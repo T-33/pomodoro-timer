@@ -7,14 +7,14 @@ let secondsLeftField = document.getElementById("secondsLeftField");
 
 let timeMinutes = 30;
 
-let timerId;
+let intervalId;
 
 startButton.addEventListener("click", startTimer);
 
 timeInputField.addEventListener("input", updateTimerTimeBeforeStart);
 
 function startTimer(e) {
-    timerId = setInterval(updateTimeLeft,1000);
+    intervalId = setInterval(updateTimeLeft,1000);
 }
 
 function updateTimerTimeBeforeStart(e) {
@@ -22,9 +22,19 @@ function updateTimerTimeBeforeStart(e) {
     secondsLeftField.textContent = 0;
 }
 
+
 function updateTimeLeft() {
     let minutesLeft = minutesLeftField.textContent;
     let secondsLeft = secondsLeftField.textContent;
+
+
+    const stopTimerCondition = minutesLeft == 0 && secondsLeft == 0;
+    console.log(minutesLeft + ":" + secondsLeft);
+    
+    if(stopTimerCondition) {
+        stopTimer();
+        return;
+    }
     
     if(secondsLeft == 0) {
         console.log("update seconds");
@@ -36,4 +46,9 @@ function updateTimeLeft() {
         
         secondsLeftField.textContent -= 1;
     }
+}
+
+function stopTimer() {
+    clearInterval(intervalId);
+    alert("time for break")
 }
