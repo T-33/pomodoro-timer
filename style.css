@@ -1,1 +1,28 @@
-﻿
+﻿html {
+    background-color: #98b1d9;
+}
+
+body {
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#timer {
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 300px;
+    font-family: "Rubik Mono One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#timeLeftField {
+    display:flex;
+    justify-content: center;
+}

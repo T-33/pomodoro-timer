@@ -1,4 +1,5 @@
 ﻿let startButton = document.getElementById("startButton");
+let stopButton = document.getElementById("stopButton");
 let timeInputField = document.getElementById("timeInputField");
 let remainingTimeField = document.getElementById("timeLeftField");
 
@@ -18,6 +19,13 @@ startButton.addEventListener("click", (e) => {
     minutes = timeInputField.value;
     updateTimeField(timeInputField.value, 0);
     startTimer();
+});
+
+stopButton.addEventListener("click", (e) => {
+    minutes = 0;
+    seconds = 0;
+    updateTimeField(0, 0);
+    stopTimer();
 });
 
 timeInputField.addEventListener("input", (e) => {
