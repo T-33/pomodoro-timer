@@ -2,53 +2,62 @@
 let timeInputField = document.getElementById("timeInputField");
 let remainingTimeField = document.getElementById("timeLeftField");
 
-let minutesLeftField = document.getElementById("minutesLeftField");
-let secondsLeftField = document.getElementById("secondsLeftField");
+let minutesTensField = document.getElementById("minutesTensField");
+let minutesOnesField = document.getElementById("minutesOnesField");
+let secondsTensField = document.getElementById("secondsTensField");
+let secondsOnesField = document.getElementById("secondsOnesField");
 
-let timeMinutes = 30;
+let minutes = 30;
+let seconds = 0;
 
 let intervalId;
 
-startButton.addEventListener("click", startTimer);
+let timerStarted = false;
 
-timeInputField.addEventListener("input", updateTimerTimeBeforeStart);
+startButton.addEventListener("click", (e) => {
+    minutes = timeInputField.value;
+    updateTimeField(timeInputField.value, 0);
+    startTimer();
+});
+
+timeInputField.addEventListener("input", (e) => {
+    if(!timerStarted) {
+        minutes = timeInputField.value;
+        
+        updateTimeField(timeInputField.value, 0);
+    }
+});
 
 function startTimer(e) {
-    intervalId = setInterval(updateTimeLeft,1000);
+    stopTimer();
+    timerStarted = true;
+    intervalId = setInterval((e) => {
+        updateTime();
+        console.log(minutes + " " + seconds);
+        updateTimeField(minutes, seconds);
+    },1000);
 }
 
-function updateTimerTimeBeforeStart(e) {
-    minutesLeftField.textContent = timeInputField.value;
-    secondsLeftField.textContent = 0;
+
+function updateTime() {
+   if(!(minutes == 0 && seconds == 0)) {
+        seconds -= 1;
+
+    if(seconds < 0) {
+        seconds = 59;
+        minutes -= 1;
+    }
+}
 }
 
+function updateTimeField(minutes, seconds) {
+    minutesTensField.textContent = Math.floor(minutes / 10);
+    minutesOnesField.textContent = minutes % 10;
 
-function updateTimeLeft() {
-    let minutesLeft = minutesLeftField.textContent;
-    let secondsLeft = secondsLeftField.textContent;
-
-
-    const stopTimerCondition = minutesLeft == 0 && secondsLeft == 0;
-    console.log(minutesLeft + ":" + secondsLeft);
-    
-    if(stopTimerCondition) {
-        stopTimer();
-        return;
-    }
-    
-    if(secondsLeft == 0) {
-        console.log("update seconds");
-        
-        minutesLeftField.textContent -= 1;
-        secondsLeftField.textContent = 59;
-    } else {
-        console.log("take one");
-        
-        secondsLeftField.textContent -= 1;
-    }
+    secondsTensField.textContent = Math.floor(seconds / 10);
+    secondsOnesField.textContent = seconds % 10;
 }
 
 function stopTimer() {
     clearInterval(intervalId);
-    alert("time for break")
 }
