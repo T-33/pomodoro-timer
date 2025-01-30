@@ -26,6 +26,7 @@ stopButton.addEventListener("click", (e) => {
     seconds = 0;
     updateTimeField(0, 0);
     stopTimer();
+    alert("Time is up!!!");
 });
 
 timeInputField.addEventListener("input", (e) => {
