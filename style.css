@@ -12,6 +12,12 @@ body {
     height: 100vh;
 }
 
+#settings {
+    position: fixed;
+    left:0px;
+    top:0px;
+}
+
 #timer {
     margin-left: auto;
     margin-right: auto;
@@ -25,4 +31,37 @@ body {
 #timeLeftField {
     display:flex;
     justify-content: center;
+}
+
+#minutesTensField {
+    font-family: "Kumar One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color:aqua;
+}
+
+#minutesOnesField {
+    font-family: "Anton", serif;
+    font-weight: 400;
+    font-style: normal;
+    color:brown;  
+}
+
+#timeFieldSemicolon {
+    font-family: "Press Start 2P", serif;
+    font-weight: 400;
+    font-style: normal;
+    color:blanchedalmond;
+}
+
+#secondsTensField {
+font-family: "Roboto Mono", serif;
+font-optical-sizing: auto;
+font-weight: 400;
+font-style: normal;
+color:blueviolet;
+}
+
+#secondsOnesField {
+    color:coral;
 }
