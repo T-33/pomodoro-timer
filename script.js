@@ -49,6 +49,11 @@ function startTimer(e) {
 
 
 function updateTime() {
+if(minutes == 0 && seconds == 0) {
+    alert("Time is up!");
+    stopTimer();
+}
+
    if(!(minutes == 0 && seconds == 0)) {
         seconds -= 1;
 
